@@ -14,7 +14,7 @@ meanfit_vars<-function(M,L,acq,trans,p,react,treat,nA,nL,n,type,propF){
   #       nL: number with latent TB 
   #       n: number of fitness levels
   #       type: changes distribution of stochastic sampling  
-  #       propF: proportion go to rel. fit = 1 (in 2 strain example)
+  #       propF: proportion go to rel. fit = 1 (in 2 strain example). If type = "det" then vector of propF and stage
   
   # new vector = updated distribution of fitness in active cases
   new <- matrix(0,n,1)
@@ -38,7 +38,7 @@ meanfit_vars<-function(M,L,acq,trans,p,react,treat,nA,nL,n,type,propF){
     # For now just 99% unfit, 1% fit
     if(type=="orig"){new["0.6",] <- (1-propF)*a; new["1",] <- propF*a }
     if(type=="normal"){h <- hist(rnorm(acq,0.7,0.1), breaks = c(v[1]-(v[2]-v[1]),v), plot = F,right = F); new<-a*h$counts/(acq)} # not tested yet
-    if(type=="det"){new["0.8",] <- (1-propF)*a; new["0.9",] <- propF*a } # not tested yet
+    if(type=="det"){pF<-propF[1];stage<-propF[2]; new["0.6",] <- (1-propF)*a; new[toString(stage),] <- propF*a } # not tested yet
     
     #*** How are the transmissions distributed?
     if(trans>0){pastmean=sum(M[,tt-1]*v)}else{ pastmean = 1 }

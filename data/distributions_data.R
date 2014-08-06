@@ -5,7 +5,7 @@
 library(plyr); library(ggplot2);library(reshape2);library(deSolve);library(grid)
 
 ##*** Locations
-home<-"~/Documents/My Documents/Diagnostics/Natural history/genfun/data"
+home<-"~/Documents/My Documents/Diagnostics/Natural history/genfun/GenFun/data"
 plots<-paste(home,"/plots",sep="")
 setwd(home)
 
